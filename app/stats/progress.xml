@@ -1,0 +1,122 @@
+<Page
+        class="page"
+        navigatingTo="navigatingTo"
+        xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!--
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!--
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem tap="onDrawerButtonTap" visibility="{{ results.length>1?'visible':'collapsed' }}">
+            <ActionItem.actionView>
+                <StackLayout orientation="horizontal">
+                    <Label class="action-bar-title fa" text="&#xf201;" tap="showChart"></Label>
+                </StackLayout>
+            </ActionItem.actionView>
+        </ActionItem>
+        <Label class="action-bar-title" text="Progress"/>
+    </ActionBar>
+
+    <GridLayout>
+        <ScrollView height="100%">
+            <StackLayout>
+                <StackLayout row="0" col="0" visibility="{{ results.length>0?'visible':'collapsed' }}"
+                             orientation="vertical"
+                             flexWrapBefore="true">
+                    <Label class="h3 text-center p-10 progress-heading" text="Overall"
+                           textWrap="true"/>
+                    <GridLayout columns="2*, 2*, *" rows="auto, *" borderColor="#696969" borderWidth="1"
+                                class="progress-background m-l-4 m-r-4" borderRadius="5">
+                        <Label row="0" col="0" class="{{ overall.pass? 'result-count-passed':'result-count-failed' }}"
+                               height="auto">
+                            <label.formattedText>
+                                <formattedString>
+                                    <formattedString.spans>
+                                        <span text="{{ overall.totalExams }}"/>
+                                        <span text=" Tests"/>
+                                    </formattedString.spans>
+                                </formattedString>
+                            </label.formattedText>
+                        </Label>
+                        <Label row="1" col="0"
+                               class="{{ overall.pass? 'result-count-passed':'result-count-failed' }}"
+                               height="auto">
+                            <label.formattedText>
+                                <formattedString>
+                                    <formattedString.spans>
+                                        <span text="{{ overall.correct }}"/>
+                                        <span text="/"/>
+                                        <span text="{{ overall.total }}"/>
+                                        <span text=" Correct"/>
+                                    </formattedString.spans>
+                                </formattedString>
+                            </label.formattedText>
+                        </Label>
+                        <Label row="0" col="1" rowSpan="2" horizontalAlignment="center"
+                               verticalAlignment="center"
+                               text="{{ overall.percentage }}"
+                               class="{{ overall.pass? 'progress-result-passed margin':'progress-result-failed margin' }}"></Label>
+                        <Label row="0" col="2" rowSpan="2" horizontalAlignment="center"
+                               verticalAlignment="center"
+                               text="{{ overall.pass? 'PASS':'FAIL' }}"
+                               class="{{ overall.pass? 'progress-result-passed':'progress-result-failed' }}"></Label>
+                    </GridLayout>
+                    <Label class="m-t-5 h3 text-center p-10 progress-heading" text="Exams" textWrap="true"/>
+                    <Repeater id="listView" items="{{ results }}" separatorColor="transparent"
+                              class="m-l-4 m-r-4">
+                        <Repeater.itemTemplate>
+                            <GridLayout columns="2*, 2*, *" rows="auto, *" borderColor="#696969" borderWidth="1"
+                                        class="progress-background m-t-5" borderRadius="5">
+                                <Label row="0" col="0" text="{{ date }}"
+                                       class="{{ pass? 'exam-date-passed':'exam-date-failed' }}" height="auto"/>
+                                <Label row="1" col="0"
+                                       class="{{ pass? 'result-count-passed':'result-count-failed' }}"
+                                       height="auto">
+                                    <label.formattedText>
+                                        <formattedString>
+                                            <formattedString.spans>
+                                                <span text="{{ correct }}"/>
+                                                <span text="/"/>
+                                                <span text="{{ total }}"/>
+                                                <span text=" Correct"/>
+                                            </formattedString.spans>
+                                        </formattedString>
+                                    </label.formattedText>
+                                </Label>
+                                <Label rowSpan="2" col="1" row="0" horizontalAlignment="center"
+                                       verticalAlignment="center"
+                                       text="{{ percentage }}"
+                                       class="{{ pass? 'progress-result-passed margin':'progress-result-failed margin' }}"></Label>
+                                <Label rowSpan="2" col="2" row="0" horizontalAlignment="center"
+                                       verticalAlignment="center"
+                                       text="{{ pass? 'PASS':'FAIL' }}"
+                                       class="{{ pass? 'progress-result-passed':'progress-result-failed' }}"></Label>
+                            </GridLayout>
+                        </Repeater.itemTemplate>
+                    </Repeater>
+                    <Button text="Reset Exam Stats!" class="progress-heading btn m-t-10" tap="resetExamStats"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <FlexboxLayout class="page-login center" backgroundImage="res://mesh"
+                       visibility="{{ results.length<1?'visible':'collapsed' }}" height="100%">
+            <GridLayout>
+                <!--f128-->
+                <StackLayout class="m-t-30">
+                    <Label text="&#xf164;" class="fa icon"></Label>
+                    <Label class="t-17 white-color center" text="You haven't given any tests yet!"></Label>
+                    <Button class="btn btn-login btn-rounded-sm font-weight-bold t-30 m-t-30"
+                            backgroundColor="#ffffff"
+                            tap="startTest" text="Start Now!!"></Button>
+                </StackLayout>
+            </GridLayout>
+        </FlexboxLayout>
+    </GridLayout>
+</Page>

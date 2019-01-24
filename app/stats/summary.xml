@@ -1,0 +1,129 @@
+<Page
+        class="page"
+        navigatingTo="navigatingTo"
+        xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!--
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!--
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu"
+                    android:visibility="collapsed"
+                    tap="onDrawerButtonTap"
+                    ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="Summary"/>
+    </ActionBar>
+
+    <ScrollView class="input-field page page-login" horizontalAlignment="center" width="100%" backgroundImage="res://mesh">
+        <StackLayout orientation="vertical" horizontalAlignment="center"
+                     style="text-align:center">
+            <StackLayout backgroundColor="white" margin="10" borderRadius="10" tap="calculate">
+                <Label class="h3 text-center p-10 progress-heading" text="Question Bank"
+                       textWrap="true" />
+                <Progress value="{{questionSize}}" maxValue="{{serverQuestionSize}}"
+                          width="80%" loaded="onProgressLoaded" color="#07C65A"
+                          class="m-t-15" />
+                <Label class="attempted m-10" color="blue" horizontalAlignment="center">
+                    <label.formattedText>
+                        <formattedString>
+                            <formattedString.spans>
+                                <span text="{{questionSize}}" class="attempted" />
+                                <span text=" of " class="total" />
+                                <span text="{{serverQuestionSize}}" class="total" />
+                                <span text=" Accessible" class="total" />
+                            </formattedString.spans>
+                        </formattedString>
+                    </label.formattedText>
+                </Label>
+                <StackLayout class="hr-light"  visibility="{{ isPremium ? 'collapsed' : 'visible' }}"/>
+                <Label class="m-5 t-16" color="blue" horizontalAlignment="center" text="Free Questions Loading..." visibility="{{ isPremium || allQuestionsLoaded || adLoaded ? 'collapsed' : 'visible' }}" />
+                <StackLayout orientation="horizontal" horizontalAlignment="center" class="m-5" visibility="{{ isPremium ? 'collapsed' : 'visible' }}">
+                    <Button class="btn btn-primary btn-rounded-sm fa" text="&#xf43f;  Premium"
+                            tap="{{ goPremium }}" width="48%"/>
+                    <Button class="btn btn-primary btn-rounded-sm fa" text="{{ '&#xf03d;  Free +' + rewards + ' Que'}}"
+                            tap="{{ topUpRewards }}" visibility="{{ !allQuestionsLoaded && adLoaded ? 'visible' : 'collapsed' }}" width="48%"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout backgroundColor="white" margin="10" borderRadius="10">
+                <Label class="h3 text-center p-10 progress-heading" text="Practice Stats"
+                       textWrap="true" />
+                <Progress value="{{ ps.attempted.length }}" maxValue="{{ questionSize }}"
+                          width="80%" loaded="onProgressLoaded" color="#07C65A"
+                          class="m-t-15" />
+                <Label class="attempted m-10" horizontalAlignment="center">
+                    <label.formattedText>
+                        <formattedString>
+                            <formattedString.spans>
+                                <span text="{{ ps.attempted.length }}" class="attempted" />
+                                <span text=" of " class="total" />
+                                <span text="{{ questionSize }}" class="total" />
+                                <span text="  Practiced" class="total" />
+                            </formattedString.spans>
+                        </formattedString>
+                    </label.formattedText>
+                </Label>
+                <StackLayout class="hr-light" />
+                <GridLayout columns="*,auto, *" rows="auto, auto"
+                            borderRadius="10">
+                    <FlexboxLayout row="0" col="0" flexDirection="column" style="padding: 15 10" horizontalAlignment="center">
+                        <Label text="{{practiceCoverage + '%'}}" class="attempted"
+                               horizontalAlignment="right" />
+                        <Label text="Complete" class="type" horizontalAlignment="center" />
+                    </FlexboxLayout>
+                    <Label class="v-line" row="0" col="1" />
+                    <FlexboxLayout row="0" col="2" flexDirection="column"
+                                   style="padding: 15 10" horizontalAlignment="center">
+                        <Label text="{{practiceAccuracy + '%'}}" class="attempted" />
+                        <Label text="Accuracy" class="type"
+                               horizontalAlignment="center" />
+                    </FlexboxLayout>
+                </GridLayout>
+            </StackLayout>
+            <StackLayout backgroundColor="white" margin="10" borderRadius="10" tap="showProgress">
+                <Label class="h3 text-center p-10 progress-heading" text="Mock Stats"
+                       textWrap="true" />
+                <Progress value="{{ mock.correct }}" maxValue="{{ mock.total }}"
+                          width="80%" loaded="onProgressLoaded" color="#07C65A"
+                          class="m-t-15" />
+                <Label class="attempted m-10" horizontalAlignment="center">
+                    <label.formattedText>
+                        <formattedString>
+                            <formattedString.spans>
+                                <span text="{{ mock.correct }}" class="attempted" />
+                                <span text=" of " class="total" />
+                                <span text="{{ mock.total }}" class="total" />
+                                <span text=" Correct" class="total" />
+                            </formattedString.spans>
+                        </formattedString>
+                    </label.formattedText>
+                </Label>
+                <StackLayout class="hr-light" />
+                <GridLayout columns="*,auto, *" rows="auto"
+                            class="progress-background m-l-4 m-r-4" borderRadius="5">
+                    <FlexboxLayout row="0" col="0" flexDirection="column"
+                                   style="padding: 15 10">
+                        <Label text="{{ mock.totalExams}}" class="mock-stat" />
+                        <Label text="Tests" class="mock-type"
+                               horizontalAlignment="center" />
+                    </FlexboxLayout>
+                    <Label class="v-line" row="0" col="1" />
+                    <FlexboxLayout row="0" col="2" flexDirection="column"
+                                   style="padding: 15 10" horizontalAlignment="center"
+                                   verticalAlignment="center">
+                        <Label text="{{mock.percentage}}" class="mock-stat" />
+                        <Label text="Accuracy" class="mock-type" />
+                    </FlexboxLayout>
+                </GridLayout>
+            </StackLayout>
+            <Button text="Reset All Stats!!" class="progress-heading btn m-t-10" tap="resetAllStats"/>
+        </StackLayout>
+    </ScrollView>
+</Page>

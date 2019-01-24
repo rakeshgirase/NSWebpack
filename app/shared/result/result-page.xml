@@ -1,0 +1,72 @@
+<Page
+        class="page"
+        loaded="onPageLoaded"
+        navigatingTo="navigatingTo"
+        xmlns:chart="nativescript-ui-chart"
+        xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!--
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!--
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu"
+                    android:visibility="collapsed"
+                    tap="onDrawerButtonTap"
+                    ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="Result"/>
+    </ActionBar>
+
+    <StackLayout>
+        <chart:RadPieChart id="donutChart" height="50%" allowAnimation="true" row="1" animate="true">
+            <chart:RadPieChart.series>
+                <chart:DonutSeries selectionMode="DataPoint"
+                                   outerRadiusFactor="0.9" expandRadius="0.4"
+                                   outerRadiusFactor="0.7" innerRadiusFactor="0.4" items="{{ result }}"
+                                   valueProperty="Count" legendLabel="Type" showLabels="true"
+                                   showPercentage="false">
+                    <chart:DonutSeries.labelStyle>
+                        <chart:PointLabelStyle margin="15" fontStyle="Bold" fillColor="transparent" textSize="20" textColor="White" />
+                    </chart:DonutSeries.labelStyle>
+                </chart:DonutSeries>
+            </chart:RadPieChart.series>
+
+            <chart:RadPieChart.legend>
+                <chart:RadLegendView position="Right" offsetOrigin="TopRight"
+                                     width="110" enableSelection="true" titleColor="#000000" />
+            </chart:RadPieChart.legend>
+            <chart:RadPieChart.palettes>
+                <chart:Palette>
+                    <chart:Palette.entries>
+                        <chart:PaletteEntry strokeWidth="1" fillColor="#07C65A" />
+                        <chart:PaletteEntry strokeWidth="1" fillColor="#ed1b1f" />
+                        <chart:PaletteEntry strokeWidth="1" fillColor="#4c8ec1" />
+                    </chart:Palette.entries>
+                </chart:Palette>
+            </chart:RadPieChart.palettes>
+        </chart:RadPieChart>
+
+        <Label text="Correct" horizontalAlignment="center"/>
+        <Label class="{{ pass? 'result-passed': 'result-failed'}}" horizontalAlignment="center">
+            <label.formattedText>
+                <formattedString>
+                    <formattedString.spans>
+                        <span text="{{ correct }}" />
+                        <span text="/" />
+                        <span text="{{ totalQuestions }}" />
+                    </formattedString.spans>
+                </formattedString>
+            </label.formattedText>
+        </Label>
+        <Label text="Percentage" horizontalAlignment="center"/>
+        <Label text="{{ percentage }}" class="{{ pass? 'result-passed': 'result-failed'}}" horizontalAlignment="center"/>
+        <Button class="btn btn-primary btn-rounded-lg" text="Detailed Result" tap="detailedResult" margin="30px"/>
+    </StackLayout>
+</Page>

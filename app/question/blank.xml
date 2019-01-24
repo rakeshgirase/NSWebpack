@@ -1,0 +1,14 @@
+<Page
+        class="page"
+        loaded="onPageLoaded"
+        xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <Label class="action-bar-title" text="Base Sas"/>
+    </ActionBar>
+
+    <FlexboxLayout horizontalAlignment="center">
+        <ActivityIndicator busy="true" color="blue"/>
+    </FlexboxLayout>
+</Page>

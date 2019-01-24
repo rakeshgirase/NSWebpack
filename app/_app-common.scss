@@ -1,0 +1,276 @@
+// Place any CSS rules you want to apply on both iOS and Android here.
+// This is where the vast majority of your CSS code goes.
+
+// Font icon class
+.fa {
+    font-family: 'fa-solid-900', "FontAwesome";
+}
+
+// Common page class
+.page-content {
+
+    .page-placeholder {
+        color: $page-icon-color;
+        font-size: $page-content-placeholder-font-size;
+        vertical-align: center;
+        horizontal-align: center;
+    }
+
+    .page-icon {
+        font-size: 72;
+        vertical-align: top;
+        horizontal-align: center;
+        color: $page-icon-color;
+        margin-top: 20%;
+    }
+}
+
+.page {
+    background-color: #ffffff;
+    color: #000000;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    font-size: 100;
+    color: white;
+    horizontal-align: center;
+}
+
+.white-color {
+    color: white;
+    margin-top: 15;
+}
+
+.center {
+    horizontal-align: center;
+}
+
+.flexbox-item {
+    width: 95%;
+    text-align: center;
+}
+
+.page-login {
+    background: #3C59FD no-repeat right bottom;
+    background-size: contain;
+    color: #ffffff;
+    flex-direction: column;
+    align-items: center;
+}
+
+//Action bar
+ActionBar .action-bar-title {
+    horizontal-align: center;
+    color: white;
+}
+
+ActionBar .flagged {
+    color: #22ff20;
+}
+
+Label {
+    color: black;
+    font-size: 18dpi;
+}
+
+.result-passed {
+    color: green;
+    font-size: 40dpi;
+}
+
+.result-failed {
+    color: #ed1b1f;
+    font-size: 40dpi;
+}
+
+.timer {
+    font-size: 20dpi;
+    color: #000099;
+    margin-top: 5dpi;
+    margin-bottom: 5dpi;
+}
+
+.selected-menu {
+    background-color: #3A53FF;
+    color: brown;
+}
+
+.selected {
+    background-color: #3A53FF;
+    color: white;
+    border-radius: 8;
+}
+
+.not-selected {
+    background-color: #f6f6f6;
+    color: black;
+    border-radius: 8;
+}
+
+.margin {
+    margin-left: 15dpi;
+    margin-right: 15dpi;
+}
+
+.margin-all {
+    padding: 15dpi;
+}
+
+.all {
+    background-color: #14418B;
+    color: white;
+    border-radius: 8;
+}
+
+@keyframes toBlue {
+    from { background-color: white; }
+    to { background-color: #3A53FF; }
+}
+
+@keyframes toRed {
+    from { background-color: white; }
+    to { background-color: #ed1b1f; }
+}
+
+
+@keyframes toGreen {
+    from { background-color: white; }
+    to { background-color: #07C65A; }
+}
+
+.correct {
+    animation-name: toGreen;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+    color: white;
+    border-radius: 8;
+}
+
+.incorrect {
+    animation-name: toRed;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+    color: white;
+    border-radius: 8;
+}
+
+.skipped {
+    background-color: #4c8ec1;
+    color: white;
+    border-radius: 8;
+}
+
+.tbd {
+    background-color: #808080;
+    color: white;
+    border-radius: 8;
+}
+
+.drawer-header {
+    color: white;
+    font-size: 20dpi;
+    vertical-align: bottom;
+}
+
+.exam-date-failed {
+    color: #ed1b1f;
+    font-size: 12dpi;
+    margin-top: 5dpi;
+    margin-left: 5dpi;
+    margin-bottom: 5dpi;
+}
+
+.result-count-failed {
+    color: #ed1b1f;
+    font-size: 16dpi;
+    font-weight: bold;
+    margin-left: 5dpi;
+    margin-bottom: 10dpi;
+}
+
+.result-background {
+    color: $accent-light;
+}
+
+.exam-date-passed {
+    color: green;
+    font-size: 11dpi;
+    margin-top: 5dpi;
+    margin-left: 5dpi;
+    margin-bottom: 5dpi;
+}
+
+.result-count-passed {
+    color: green;
+    font-size: 16dpi;
+    font-weight: bold;
+    margin-left: 5dpi;
+    margin-bottom: 10dpi;
+}
+
+.progress-result-passed {
+    color: green;
+    font-weight: bold;
+    font-size: 16dpi;
+    font-weight: bold;
+}
+
+.progress-result-failed {
+    color: #ed1b1f;
+    font-size: 16dpi;
+    font-weight: bold;
+}
+
+.progress-background {
+    background-color: white;
+    color: white;
+}
+
+.progress-heading {
+    background-image: linear-gradient(to right, $accent-light, $accent-dark);
+    color: white;
+}
+
+.item-title {
+    background-color: rgba(0,0,0,0.4);
+    vertical-align: bottom;
+    padding: 16;
+    font-size: 20;
+}
+
+
+.attempted{
+    font-size: 20;
+    color: blue;
+}
+
+.total{
+    font-size: 20;
+    color: blue;
+}
+
+
+.type{
+    font-size: 10;
+    color: blue;
+}
+
+.v-line {
+    width: 5;
+    height: 50;
+    background-color: red;
+}
+
+.mock-stat{
+    font-size: 20;
+    color: blue;
+}
+
+.mock-type{
+    font-size: 10;
+    color: blue;
+}

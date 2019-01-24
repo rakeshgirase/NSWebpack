@@ -1,0 +1,26 @@
+<!--
+RadSideDrawer is a UI component part of the Progress NativeScript UI set of components.
+Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
+http://docs.telerik.com/devtools/nativescript-ui/Controls/NativeScript/SideDrawer/getting-started
+-->
+<nsDrawer:RadSideDrawer id="sideDrawer" xmlns:nsDrawer="nativescript-ui-sidedrawer" xmlns:myDrawer="shared/my-drawer">
+    <nsDrawer:RadSideDrawer.drawerTransition>
+        <nsDrawer:PushTransition/>
+    </nsDrawer:RadSideDrawer.drawerTransition>
+
+    <nsDrawer:RadSideDrawer.drawerContent>
+        <StackLayout>
+            <!--
+            Use {N} custom components to reuse UI across your mobile app.
+            The MyDrawer custom component defined in "/shared/my-drawer" holds the contents of the app drawer.
+            Learn more about custom components and how they can be used in this documentation article:
+            http://docs.nativescript.org/ui/basics#custom-components
+            -->
+            <myDrawer:MyDrawer selectedPage="practice"/>
+        </StackLayout>
+    </nsDrawer:RadSideDrawer.drawerContent>
+
+    <nsDrawer:RadSideDrawer.mainContent>
+        <Frame defaultPage="question/blank"></Frame>
+    </nsDrawer:RadSideDrawer.mainContent>
+</nsDrawer:RadSideDrawer>
