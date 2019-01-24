@@ -23,7 +23,7 @@ describe("Question Service", () => {
     });
 
     it("Premium Users have access to all the questions", async () => {
-        const value = 434;
+        const value = 200;
         TKUnit.clearQuestionSize();
         TKUnit.saveBoolean(constantsModule.PREMIUM, true);
         const q: QuestionService = QuestionService.getInstance();
