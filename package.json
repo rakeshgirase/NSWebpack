@@ -28,7 +28,7 @@
     "nativescript-ui-sidedrawer": "~5.0.0",
     "nativescript-unit-test-runner": "^0.3.4",
     "rxjs": "~6.3.0",
-    "tns-core-modules": "^5.1.1"
+    "tns-core-modules": "~5.1.0"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",
