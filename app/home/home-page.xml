@@ -4,11 +4,10 @@
         xmlns="http://schemas.nativescript.org/tns.xsd">
 
     <ActionBar class="action-bar">
-        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
         <Label class="action-bar-title" text="NS Webpack"/>
     </ActionBar>
 
-    <FlexboxLayout horizontalAlignment="center">
-        <ActivityIndicator busy="true" color="blue"/>
+    <FlexboxLayout horizontalAlignment="center" verticalAlignment="center">
+        <Label text="Welcome to Sample Project!"/>
     </FlexboxLayout>
 </Page>
