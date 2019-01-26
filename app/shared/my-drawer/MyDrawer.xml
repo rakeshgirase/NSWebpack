@@ -41,30 +41,7 @@ Feel free to customize layouts and components to change how your app drawer look
                 <Label row="0" col="0" text="&#xf201;" class="fa t-14"/>
                 <Label row="0" col="1" text="Progress" class="p-r-10" />
             </GridLayout>
-
-            <StackLayout class="hr-light"/>
-
-            <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'settings' ? ' selected': '') }}"
-                route="settings/settings-page" params="settings" tap="navigate">
-                <Label row="0" col="0" text="&#xf013;" class="fa t-14"/>
-                <Label row="0" col="1" text="Settings" class="p-r-10" />
-            </GridLayout>
-
-            <GridLayout columns="auto, *" class="sidedrawer-list-item" tap="share">
-                <Label row="0" col="0" text="&#xf1e0;" class="fa t-14"/>
-                <Label row="0" col="1" text="Share" class="p-r-10" />
-            </GridLayout>
-
-            <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'premium' ? ' selected': '') }}"
-                        route="premium/premium" params="premium" tap="goPremium">
-                <Label row="0" col="0" text="&#xf43f;" class="fa t-14"/>
-                <Label row="0" col="1" text="Premium" class="p-r-10" />
-            </GridLayout>
-
-            <GridLayout columns="auto, *" class="sidedrawer-list-item" tap="logout">
-                <Label row="60" col="0" text="&#xf052;" class="fa t-14"/>
-                <Label row="0" col="1" text="Exit" class="p-r-10" />
-            </GridLayout>
+>
             <Label row="0" col="1" text="{{ version }}" class="m-l-15" style="font-size:10; color: blue"/>
         </StackLayout>
     </ScrollView>
